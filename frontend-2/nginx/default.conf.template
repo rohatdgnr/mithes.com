@@ -5,12 +5,20 @@ server {
   root /usr/share/nginx/html;
   index index.html;
 
+  # Render env: BACKEND_URL = https://mithes-api.onrender.com  (SONUNDA SLASH YOK!)
+  set $backend ${BACKEND_URL};
+
+  # proxy_pass değişkende hostname olduğu için resolver gerekli
+  resolver 1.1.1.1 8.8.8.8 ipv6=off valid=10m;
+  resolver_timeout 5s;
+
   location /api/ {
-    proxy_pass http://${BACKEND_URL}/api/;
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
+
+    # /api/... yolu olduğu gibi korunur (URI eklemiyoruz)
+    proxy_pass $backend;
+    proxy_ssl_server_name on;   # HTTPS için SNI
   }
 
   location / {
