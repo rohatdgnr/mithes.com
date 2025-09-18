@@ -2,24 +2,24 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Bağımlılıkları önceden çek (cache verimli olsun)
+# Sadece pom.xml'i kopyala ve bağımlılıkları indir (cache optimize)
 COPY pom.xml .
 RUN mvn -q -DskipTests dependency:go-offline
 
-# Kaynaklar
+# Kaynak kodları kopyala ve jar üret
 COPY src ./src
-
-# Jar üret
 RUN mvn -q -DskipTests package
 
 # ---- Run stage ----
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
-# Oluşan jar'ı al (ad değişken olabilir diye wildcard)
-COPY --from=build /app/target/*-SNAPSHOT.jar /app/app.jar
-# Eğer snapshot değilse: COPY --from=build /app/target/*.jar /app/app.jar
+# Build aşamasında üretilen JAR'ı al
+COPY --from=build /app/target/*.jar /app/app.jar
 
+# Ortam değişkenleri
 ENV JAVA_OPTS="-XX:+UseContainerSupport"
 EXPOSE 8080
+
+# Uygulamayı başlat
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
