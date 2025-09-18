@@ -26,8 +26,8 @@ services:
     autoDeploy: true
     envVars:
       # BACKEND_URL'i otomatik olarak API servisinin URL'inden çeksin:
-      - key: BACKEND_URL
-        fromService:
-          name: mithes-api
-          type: web
-          property: url
+  - key: BACKEND_URL
+    fromService:
+      name: mithes-api
+      type: web
+      property: hostport
