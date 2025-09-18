@@ -1,32 +1,30 @@
 services:
-  # === API (Node/Express) ===
+  # === API (Spring Boot) ===
   - name: mithes-api
     type: web
     env: docker
     plan: free
     rootDir: contact-form-backend
-    dockerfilePath: ./contact-form-backend/Dockerfile
+    dockerfilePath: Dockerfile     # <-- SADECE Dockerfile
     autoDeploy: true
     envVars:
-      - key: NODE_ENV
-        value: production
       - key: PORT
         value: 8080
-    # varsa health endpoint'in:
-    # healthCheckPath: /health
+      - key: NODE_ENV
+        value: production
+    # healthCheckPath: /health   # Uygulamada /health yoksa bu satırı KALDIR
 
-  # === Frontend (Nginx + envsubst) ===
+  # === Frontend (Nginx) ===
   - name: mithes-web
     type: web
     env: docker
     plan: free
     rootDir: frontend-2
-    dockerfilePath: ./frontend-2/Dockerfile
+    dockerfilePath: Dockerfile     # <-- SADECE Dockerfile
     autoDeploy: true
     envVars:
-      # Render, backend servisinden URL'i otomatik çeksin
       - key: BACKEND_URL
         fromService:
           name: mithes-api
           type: web
-          property: hostport
+          property: url
