@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: contact-form-backend
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/contactdb  # Veritabanı adı: contactdb
+    driver-class-name: org.postgresql.Driver
+    username: postgres       # PostgreSQL kullanıcı adın (genelde 'postgres')
+    password: 1234   # PostgreSQL şifren (güvenlik için dışarıdan almak daha iyidir)
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    # İlk başta create olabilir, sonra update'e çek
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rohatdoganer@gmail.com
+    password: "onipersychgylemu"  # uygulama şifresi, gizli tut
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
