@@ -1,15 +1,13 @@
 FROM nginx:1.27-alpine
 
-# Nginx conf şablonu (envsubst ile BACKEND_URL gömeceğiz)
+# Nginx conf şablonu (PORT ve BACKEND_URL envsubst ile gömülecek)
 COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
 
 # Statik dosyalar
 COPY . /usr/share/nginx/html
 
-# Varsayılan (Render envVars ile override edilir)
-ENV BACKEND_URL=http://localhost:8080
+# Varsayılanlar (Render'da Environment Vars ile override edeceğiz)
+ENV BACKEND_URL=mithes-api.onrender.com
 
-EXPOSE 80
-CMD ["/bin/sh", "-c", "envsubst '$$BACKEND_URL' \
-  < /etc/nginx/templates/default.conf.template \
-  > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
+# Not: EXPOSE şart değil, Render zaten PORT env’i ile yönlendiriyor
+CMD ["/bin/sh", "-c", "envsubst '$$PORT $$BACKEND_URL' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
