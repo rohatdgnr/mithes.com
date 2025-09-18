@@ -7,6 +7,9 @@
   <meta name="description" content="MİTHES sipariş sepeti ve teklif talep sayfası." />
   <link rel="canonical" href="/cart.html" />
 
+  <!-- DEV/TEST için backend hostunu sabitle -->
+  <meta name="api-base" content="http://localhost:8080">
+
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon" />
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
@@ -26,48 +29,26 @@
   <!-- Main CSS -->
   <link href="assets/css/main.css" rel="stylesheet" />
 
-  <!-- Template Info (BootstrapMade Strategy) -->
-  <!--
-    Template Name: Strategy
-    Updated: Jun 06 2025 with Bootstrap v5.3.6
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  -->
-
   <style>
-    /* Küçük iyileştirmeler: inline stil yerine sınıflar */
-    :root {
-      --mithes-surface: var(--surface-color, #101010);
-      --mithes-border: var(--border-color, #2c2c2c);
-    }
+    :root { --mithes-surface: var(--surface-color, #101010); --mithes-border: var(--border-color, #2c2c2c); }
     body.index-page { background-color: var(--dark-background, #0b0b0b); }
-
     .logo-subtext { font-size: .8rem; letter-spacing: .03em; opacity: .8; }
     .cart-icon .badge { font-size: .65rem; }
-
     .page-title { padding: 6rem 0 2rem; }
     .page-title .breadcrumbs ol { margin: 0; }
-
     .list-product-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: .5rem; }
     .list-group-item.mithes-item { background-color: var(--mithes-surface); color: var(--default-color); border-color: var(--mithes-border); }
     .btn-outline-accent { border-color: var(--accent-color); color: var(--accent-color); }
     .btn-outline-accent:hover { background: var(--accent-color); color: var(--contrast-color); }
-
     .card.mithes-panel { background-color: var(--mithes-surface); border-color: var(--mithes-border); color: var(--default-color); }
-
     .form-control, .form-select, .form-check-input { background: var(--background-color, #fff); color: var(--default-color, #111); border-color: var(--mithes-border); }
-
     .btn-accent { background: var(--accent-color); color: var(--contrast-color); }
     .btn-accent:hover { filter: brightness(.9); }
-
     .empty-cart { font-style: italic; opacity: .9; }
   </style>
-  <!-- Opsiyonel: API tabanı. Prod için boş bırakın, geliştirmede http://localhost:8080 yazabilirsiniz. -->
-  <!-- <meta name="api-base" content="http://localhost:8080"> -->
 </head>
 
 <body class="index-page">
-  <!-- Header -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex flex-column align-items-start me-auto me-xl-0 text-decoration-none">
@@ -107,7 +88,6 @@
   </header>
 
   <main class="main">
-    <!-- Page Title -->
     <section class="page-title dark-background" data-aos="fade">
       <div class="container position-relative">
         <h1>Sepetiniz &amp; Teklif İste</h1>
@@ -121,11 +101,9 @@
       </div>
     </section>
 
-    <!-- Cart Section -->
     <section id="cart" class="section dark-background py-4">
       <div class="container text-body">
         <div class="row g-4">
-          <!-- Cart Items -->
           <div class="col-lg-8">
             <div class="card mithes-panel shadow-sm">
               <div class="card-header d-flex justify-content-between align-items-center">
@@ -141,19 +119,12 @@
                 <p id="cart-empty" class="empty-cart d-none">Sepetiniz boş.</p>
               </div>
               <div class="card-footer d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
-                <div>
-                  <span class="fw-semibold">Ara Toplam:</span>
-                  <span id="cart-subtotal" class="ms-2">0 ₺</span>
-                </div>
-                <div>
-                  <span class="fw-semibold">Toplam Adet:</span>
-                  <span id="cart-qty" class="ms-2">0</span>
-                </div>
+                <div><span class="fw-semibold">Ara Toplam:</span> <span id="cart-subtotal" class="ms-2">0 ₺</span></div>
+                <div><span class="fw-semibold">Toplam Adet:</span> <span id="cart-qty" class="ms-2">0</span></div>
               </div>
             </div>
           </div>
 
-          <!-- Order Form -->
           <div class="col-lg-4">
             <div class="card mithes-panel shadow-sm">
               <div class="card-body">
@@ -169,9 +140,9 @@
                     <input type="text" id="companyName" name="companyName" class="form-control" placeholder="Firma Adı (opsiyonel)" />
                   </div>
                   <div class="mb-3">
-                    <label for="email" class="form-label">E‑posta<span class="text-danger"> *</span></label>
+                    <label for="email" class="form-label">E-posta<span class="text-danger"> *</span></label>
                     <input type="email" id="email" name="email" class="form-control" placeholder="mail@ornek.com" inputmode="email" required />
-                    <div class="invalid-feedback">Geçerli bir e‑posta girin.</div>
+                    <div class="invalid-feedback">Geçerli bir e-posta girin.</div>
                   </div>
                   <div class="mb-3">
                     <label for="phone" class="form-label">Telefon<span class="text-danger"> *</span></label>
@@ -194,12 +165,12 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer (örnek içerik Türkçeleştirildi) -->
   <footer id="footer" class="footer">
     <div class="container footer-top">
       <div class="row gy-4">
@@ -233,20 +204,18 @@
             <li><a href="#">Endüstriyel Isıtma</a></li>
             <li><a href="#">Özel İmalat</a></li>
             <li><a href="#">Teknik Danışmanlık</a></li>
-            <li><a href="#">Ar‑Ge</a></li>
+            <li><a href="#">Ar-Ge</a></li>
             <li><a href="#">Bakım &amp; Destek</a></li>
           </ul>
         </div>
 
-      <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-        <h4>İletişim</h4>
-        <p>Soğanlık Yeni Mah. Pegagaz Sok.Pega Kartal Residence D.3</p>
-        <p>İstanbul, Türkiye</p>
-        <p>
-          <strong>Telefon:</strong> <span>+90 216 523 49 00</span><br>
-          <strong>Email:</strong> <span>info@mithes.com</span>
-        </p>
-      </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>İletişim</h4>
+          <p>Soğanlık Yeni Mah. Pegagaz Sok.Pega Kartal Residence D.3</p>
+          <p>İstanbul, Türkiye</p>
+          <p><strong>Telefon:</strong> <span>+90 216 523 49 00</span><br>
+             <strong>Email:</strong> <span>info@mithes.com</span></p>
+        </div>
       </div>
     </div>
 
@@ -256,10 +225,7 @@
     </div>
   </footer>
 
-  <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center" aria-label="Yukarı dön"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
   <div id="preloader" class="d-none"></div>
 
   <!-- Vendor JS -->
@@ -274,238 +240,201 @@
   <!-- Main JS -->
   <script src="assets/js/main.js"></script>
 
- 
+  <!-- Cart Logic -->
+  <script>
+  (() => {
+    const cartItemsList = document.getElementById('cart-items-list');
+    const cartLoading   = document.getElementById('cart-loading');
+    const cartEmpty     = document.getElementById('cart-empty');
+    const subtotalEl    = document.getElementById('cart-subtotal');
+    const qtyEl         = document.getElementById('cart-qty');
+    const cartCountBadge= document.getElementById('cart-count');
+    const clearCartBtn  = document.getElementById('clear-cart');
 
+    const form             = document.getElementById('order-form');
+    const formDisabledNote = document.getElementById('form-disabled-note');
+    const submitBtn        = document.getElementById('submit-offer');
+    const submitLabel      = submitBtn.querySelector('.submit-label');
+    const submitSpinner    = submitBtn.querySelector('.submit-spinner');
 
-<!-- Cart Logic (iyileştirilmiş) -->
-<script>
-(() => {
-  const cartItemsList = document.getElementById('cart-items-list');
-  const cartLoading = document.getElementById('cart-loading');
-  const cartEmpty = document.getElementById('cart-empty');
-  const subtotalEl = document.getElementById('cart-subtotal');
-  const qtyEl = document.getElementById('cart-qty');
-  const cartCountBadge = document.getElementById('cart-count');
-  const clearCartBtn = document.getElementById('clear-cart');
+    const TRYFmt = new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' });
 
-  const form = document.getElementById('order-form');
-  const formDisabledNote = document.getElementById('form-disabled-note');
-  const submitBtn = document.getElementById('submit-offer');
-  const submitLabel = submitBtn.querySelector('.submit-label');
-  const submitSpinner = submitBtn.querySelector('.submit-spinner');
+    // API base (meta > fallback)
+    const API_BASE = (document.querySelector('meta[name="api-base"]')?.content || '').trim()
+                  || ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:8080' : '');
 
-  const TRYFmt = new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' });
+    const absUrl = (u) => {
+      if (!u) return '';
+      if (/^https?:\/\//i.test(u)) return u;
+      return u.startsWith('/') ? API_BASE + u : API_BASE + '/' + u;
+    };
 
-  // API base detection: meta > prod/dev fallback
-  const API_BASE = (document.querySelector('meta[name="api-base"]')?.content || '').trim() ||
-                   ((location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:8080' : '');
+    const getCart = () => { try { return JSON.parse(localStorage.getItem('cart')) || []; } catch { return []; } };
+    const setCart = (c) => localStorage.setItem('cart', JSON.stringify(c));
 
-  // Görsel URL'lerini backend origin'ine sabitle
-  const absUrl = (u) => {
-    if (!u) return '';
-    if (/^https?:\/\//i.test(u)) return u;        // zaten tam URL
-    return u.startsWith('/') ? API_BASE + u       // /images/urun.webp
-                             : API_BASE + '/' + u; // images/urun.webp
-  };
+    const updateBadge = (q) => {
+      if (q > 0) { cartCountBadge.textContent = String(q); cartCountBadge.classList.remove('d-none'); }
+      else cartCountBadge.classList.add('d-none');
+    };
 
-  function getCart() {
-    try { return JSON.parse(localStorage.getItem('cart')) || []; }
-    catch { return []; }
-  }
-  function setCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
+    const totals = (items) => {
+      const subtotal = items.reduce((a,p)=>a+(+p.price||0)*(+p.quantity||0),0);
+      const qty = items.reduce((a,p)=>a+(+p.quantity||0),0);
+      subtotalEl.textContent = TRYFmt.format(subtotal);
+      qtyEl.textContent = String(qty);
+      updateBadge(qty);
+    };
 
-  function updateBadge(totalQty) {
-    if (totalQty > 0) {
-      cartCountBadge.textContent = String(totalQty);
-      cartCountBadge.classList.remove('d-none');
-    } else {
-      cartCountBadge.classList.add('d-none');
-    }
-  }
+    const renderEmpty = () => {
+      cartLoading.classList.add('d-none');
+      cartItemsList.classList.add('d-none');
+      cartEmpty.classList.remove('d-none');
+      form.classList.add('d-none');
+      formDisabledNote.classList.remove('d-none');
+    };
 
-  function totals(products) {
-    const subtotal = products.reduce((acc, p) => acc + (Number(p.price) || 0) * (Number(p.quantity) || 0), 0);
-    const qty = products.reduce((acc, p) => acc + (Number(p.quantity) || 0), 0);
-    subtotalEl.textContent = TRYFmt.format(subtotal);
-    qtyEl.textContent = String(qty);
-    updateBadge(qty);
-  }
+    const renderItems = (products) => {
+      cartItemsList.innerHTML = '';
+      products.forEach((p) => {
+        const li = document.createElement('li');
+        li.className = 'list-group-item mithes-item py-3';
 
-  function renderEmpty() {
-    cartLoading.classList.add('d-none');
-    cartItemsList.classList.add('d-none');
-    cartEmpty.classList.remove('d-none');
-    form.classList.add('d-none');
-    formDisabledNote.classList.remove('d-none');
-  }
+        const img = p.imageUrl ? `<img class="list-product-thumb" src="${absUrl(p.imageUrl)}" alt="${p.name}" onerror="this.style.display='none'">` : '';
 
-  function renderItems(products) {
-    cartItemsList.innerHTML = '';
-    products.forEach((product) => {
-      const li = document.createElement('li');
-      li.className = 'list-group-item mithes-item py-3';
+        li.innerHTML = `
+          <div class="d-flex align-items-center gap-3">
+            ${img}
+            <div class="flex-grow-1">
+              <h4 class="h6 mb-1">${p.name || ('Ürün #' + p.id)}</h4>
+              <div class="small opacity-75">Adet: <strong>${p.quantity}</strong></div>
+              <div class="fw-semibold mt-1">${TRYFmt.format((+p.price||0) * (+p.quantity||0))}</div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button type="button" class="btn btn-sm btn-outline-secondary" data-action="dec" aria-label="Adeti azalt">–</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" data-action="inc" aria-label="Adeti artır">+</button>
+              <button type="button" class="btn btn-sm btn-outline-accent" data-action="remove" aria-label="Kaldır"><i class="bi bi-x-lg"></i></button>
+            </div>
+          </div>`;
 
-      // Görsel: varsa göster; 404 olursa gizle. Yoksa hiç basma.
-      const imgSrc = absUrl(product.imageUrl);
-      const imgTag = imgSrc
-        ? `<img class="list-product-thumb" src="${imgSrc}" alt="${product.name}"
-                 onerror="this.style.display='none'">`
-        : '';
+        li.querySelector('[data-action="remove"]').addEventListener('click', () => {
+          const cart = getCart().filter(ci => String(ci.id) !== String(p.id));
+          setCart(cart);
+          li.remove();
+          if (!cart.length) renderEmpty(); else totals(cart.map(x=>({ ...x })));
+        });
 
-      li.innerHTML = `
-        <div class="d-flex align-items-center gap-3">
-          ${imgTag}
-          <div class="flex-grow-1">
-            <h4 class="h6 mb-1">${product.name}</h4>
-            <div class="small opacity-75">Adet: <strong>${product.quantity}</strong></div>
-            <div class="fw-semibold mt-1">${TRYFmt.format((Number(product.price)||0) * (Number(product.quantity)||0))}</div>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary" aria-label="Adeti azalt" data-action="dec">–</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" aria-label="Adeti artır" data-action="inc">+</button>
-            <button type="button" class="btn btn-sm btn-outline-accent" aria-label="Sepetten çıkart" data-action="remove"><i class="bi bi-x-lg"></i></button>
-          </div>
-        </div>`;
+        li.querySelector('[data-action="inc"]').addEventListener('click', () => {
+          const cart = getCart();
+          const found = cart.find(ci => String(ci.id) === String(p.id));
+          if (found) { found.quantity = (+found.quantity||0)+1; setCart(cart); location.reload(); }
+        });
 
-      // Events
-      li.querySelector('[data-action="remove"]').addEventListener('click', () => {
-        const cart = getCart().filter(ci => String(ci.id) !== String(product.id));
-        setCart(cart);
-        li.remove();
-        if (cart.length === 0) renderEmpty();
-        else {
-          const next = products.filter(p => String(p.id) !== String(product.id));
-          totals(next);
-        }
+        li.querySelector('[data-action="dec"]').addEventListener('click', () => {
+          const cart = getCart();
+          const found = cart.find(ci => String(ci.id) === String(p.id));
+          if (found) { found.quantity = Math.max(1,(+found.quantity||1)-1); setCart(cart); location.reload(); }
+        });
+
+        cartItemsList.appendChild(li);
       });
 
-      li.querySelector('[data-action="inc"]').addEventListener('click', () => {
-        const cart = getCart();
-        const found = cart.find(ci => String(ci.id) === String(product.id));
-        if (found) { found.quantity = Number(found.quantity || 0) + 1; setCart(cart); location.reload(); }
-      });
-      li.querySelector('[data-action="dec"]').addEventListener('click', () => {
-        const cart = getCart();
-        const found = cart.find(ci => String(ci.id) === String(product.id));
-        if (found) {
-          found.quantity = Math.max(1, Number(found.quantity || 1) - 1);
-          setCart(cart); location.reload();
-        }
-      });
+      cartLoading.classList.add('d-none');
+      cartEmpty.classList.add('d-none');
+      cartItemsList.classList.remove('d-none');
+      form.classList.remove('d-none');
+      formDisabledNote.classList.add('d-none');
+    };
 
-      cartItemsList.appendChild(li);
-    });
-
-    cartLoading.classList.add('d-none');
-    cartEmpty.classList.add('d-none');
-    cartItemsList.classList.remove('d-none');
-    form.classList.remove('d-none');
-    formDisabledNote.classList.add('d-none');
-  }
-
-  async function loadProducts() {
-    const cart = getCart();
-    if (cart.length === 0) { renderEmpty(); return; }
-
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
-
-    try {
-      const products = await Promise.all(
-        cart.map(async (item) => {
-          const url = `${API_BASE}/api/products/${encodeURIComponent(item.id)}`;
-          const res = await fetch(url, { signal: controller.signal, headers: { 'Accept': 'application/json' } });
-          const bodyText = await res.text().catch(() => '');
-          if (!res.ok) {
-            throw new Error(`Ürün bilgisi alınamadı (${res.status} ${res.statusText})${bodyText ? ` — ${bodyText}` : ''}`);
-          }
-          let data;
-          try {
-            data = bodyText ? JSON.parse(bodyText) : {};
-          } catch (e) {
-            console.warn('JSON parse edilemedi, yanıt:', bodyText);
-            throw new Error('Sunucudan beklenmeyen yanıt alındı.');
-          }
-          return { ...data, quantity: Number(item.quantity) || 1 };
-        })
-      );
-      renderItems(products);
-      totals(products);
-    } catch (err) {
-      console.error(err);
-      cartLoading.innerHTML = `<span class="text-danger">${(err && err.message) ? err.message : 'Ürünler yüklenemedi. Lütfen sayfayı yenileyin.'}</span>`;
-    } finally {
-      clearTimeout(timeout);
-    }
-  }
-
-  // Clear cart
-  clearCartBtn.addEventListener('click', () => {
-    localStorage.removeItem('cart');
-    renderEmpty();
-    totals([]);
-  });
-
-  // Form validation + submit
-  (function setupForm() {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!form.checkValidity()) {
-        form.classList.add('was-validated');
-        return;
-      }
-
+    async function loadProducts() {
       const cart = getCart();
-      if (cart.length === 0) { renderEmpty(); return; }
-
-      const payload = {
-        name: form.name.value.trim(),
-        companyName: form.companyName.value.trim(),
-        email: form.email.value.trim(),
-        phone: form.phone.value.trim(),
-        message: form.message.value.trim(),
-        products: cart.map(ci => ({ productId: ci.id, quantity: Number(ci.quantity) || 1 }))
-      };
-
-      submitBtn.disabled = true;
-      submitLabel.classList.add('d-none');
-      submitSpinner.classList.remove('d-none');
+      if (!cart.length) { renderEmpty(); return; }
 
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 20000);
+      const timeout = setTimeout(() => controller.abort(), 15000);
+
       try {
-        const offerUrl = `${API_BASE}/api/offer`;
-        const res = await fetch(offerUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'text/plain, application/json' },
-          body: JSON.stringify(payload),
-          signal: controller.signal
-        });
-        if (!res.ok) {
-          const text = await res.text();
-          throw new Error(text || 'Teklif gönderilemedi.');
-        }
-        const message = await res.text();
-        alert(message || 'Talebiniz alınmıştır.');
-        localStorage.removeItem('cart');
-        window.location.href = 'index.html';
+        const products = await Promise.all(cart.map(async (item) => {
+          // Eğer localStorage'da ürün adı/görsel de saklıyorsan, fetch başarısız olursa fallback yapıyoruz
+          const fallback = { id: item.id, name: item.name, imageUrl: item.imageUrl, price: item.price, quantity: item.quantity };
+
+          try {
+            const res = await fetch(`${API_BASE}/api/products/${encodeURIComponent(item.id)}`, {
+              signal: controller.signal, headers: { 'Accept': 'application/json' }
+            });
+            if (!res.ok) return fallback; // 404 vs: local veriyi kullan
+            const data = await res.json().catch(() => ({}));
+            return { ...data, quantity: Number(item.quantity)||1 };
+          } catch {
+            return fallback;
+          }
+        }));
+
+        renderItems(products);
+        totals(products);
       } catch (err) {
         console.error(err);
-        alert(err.message || 'Bir hata oluştu. Lütfen tekrar deneyin.');
+        cartLoading.innerHTML = `<span class="text-danger">${err?.message || 'Ürünler yüklenemedi.'}</span>`;
       } finally {
         clearTimeout(timeout);
-        submitBtn.disabled = false;
-        submitLabel.classList.remove('d-none');
-        submitSpinner.classList.add('d-none');
       }
+    }
+
+    clearCartBtn.addEventListener('click', () => {
+      localStorage.removeItem('cart');
+      renderEmpty();
+      totals([]);
     });
+
+    // Teklif formu
+    (function setupForm(){
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.classList.add('was-validated'); return; }
+
+        const cart = getCart();
+        if (!cart.length) { renderEmpty(); return; }
+
+        const payload = {
+          name: form.name.value.trim(),
+          companyName: form.companyName.value.trim(),
+          email: form.email.value.trim(),
+          phone: form.phone.value.trim(),
+          message: form.message.value.trim(),
+          products: cart.map(ci => ({ productId: ci.id, quantity: Number(ci.quantity)||1 }))
+        };
+
+        submitBtn.disabled = true;
+        submitLabel.classList.add('d-none');
+        submitSpinner.classList.remove('d-none');
+
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 20000);
+
+        try {
+          const res = await fetch(`${API_BASE}/api/offer`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'text/plain, application/json' },
+            body: JSON.stringify(payload),
+            signal: controller.signal
+          });
+          if (!res.ok) throw new Error(await res.text() || 'Teklif gönderilemedi.');
+          alert((await res.text()) || 'Talebiniz alınmıştır.');
+          localStorage.removeItem('cart');
+          location.href = 'index.html';
+        } catch (err) {
+          console.error(err);
+          alert(err.message || 'Bir hata oluştu.');
+        } finally {
+          clearTimeout(timeout);
+          submitBtn.disabled = false;
+          submitLabel.classList.remove('d-none');
+          submitSpinner.classList.add('d-none');
+        }
+      });
+    })();
+
+    loadProducts();
   })();
-
-  // Init
-  loadProducts();
-})();
-</script>
-
-
+  </script>
 </body>
 </html>
