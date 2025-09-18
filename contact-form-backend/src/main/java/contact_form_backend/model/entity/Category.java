@@ -9,8 +9,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;        // Örn: "Süt Ürünleri"
-    private String description; // Opsiyonel
+    private String name;
+    private String description;
 
     // --- Getter/Setter ---
     public Long getId() { return id; }
