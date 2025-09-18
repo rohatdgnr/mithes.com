@@ -1,30 +1,30 @@
 services:
-  # === API (Spring Boot) ===
+  # === API ===
   - name: mithes-api
     type: web
     env: docker
     plan: free
-    rootDir: contact-form-backend
-    dockerfilePath: Dockerfile     # <-- SADECE Dockerfile
+    rootDir: ./contact-form-backend   # <<< BURASI
+    dockerfilePath: ./Dockerfile      # <<< Düzeltildi
     autoDeploy: true
     envVars:
-      - key: PORT
-        value: 8080
       - key: NODE_ENV
         value: production
-    # healthCheckPath: /health   # Uygulamada /health yoksa bu satırı KALDIR
+      - key: PORT
+        value: 8080
+    healthCheckPath: /actuator/health  # Spring Boot actuator varsa
 
-  # === Frontend (Nginx) ===
+  # === Frontend ===
   - name: mithes-web
     type: web
     env: docker
     plan: free
-    rootDir: frontend-2
-    dockerfilePath: Dockerfile     # <-- SADECE Dockerfile
+    rootDir: ./frontend-2             # <<< BURASI
+    dockerfilePath: ./Dockerfile
     autoDeploy: true
     envVars:
       - key: BACKEND_URL
         fromService:
           name: mithes-api
           type: web
-          property: url
+          property: hostport
