@@ -1,9 +1,9 @@
 services:
-  # === API ===
+  # === API (Node/Express) ===
   - name: mithes-api
     type: web
     env: docker
-    plan: free          # istersen Starter/Std yapabilirsin
+    plan: free
     rootDir: contact-form-backend
     dockerfilePath: ./contact-form-backend/Dockerfile
     autoDeploy: true
@@ -12,11 +12,10 @@ services:
         value: production
       - key: PORT
         value: 8080
-    healthCheckPath: /health  # varsa; yoksa / koyabilirsin
-    # buildCommand: ""        # Docker olduğundan gerek yok
-    # startCommand: ""        # Docker olduğundan gerek yok
+    # varsa health endpoint'in:
+    # healthCheckPath: /health
 
-  # === Frontend (Nginx + proxy) ===
+  # === Frontend (Nginx + envsubst) ===
   - name: mithes-web
     type: web
     env: docker
@@ -25,9 +24,9 @@ services:
     dockerfilePath: ./frontend-2/Dockerfile
     autoDeploy: true
     envVars:
-      # BACKEND_URL'i otomatik olarak API servisinin URL'inden çeksin:
-  - key: BACKEND_URL
-    fromService:
-      name: mithes-api
-      type: web
-      property: hostport
+      # Render, backend servisinden URL'i otomatik çeksin
+      - key: BACKEND_URL
+        fromService:
+          name: mithes-api
+          type: web
+          property: hostport
