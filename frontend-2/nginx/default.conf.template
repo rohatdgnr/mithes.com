@@ -1,11 +1,10 @@
 server {
-  listen ${PORT};
+  listen 80;
   server_name _;
 
   root /usr/share/nginx/html;
   index index.html;
 
-  # API istekleri backend'e proxy
   location /api/ {
     proxy_pass http://${BACKEND_URL}/api/;
     proxy_set_header Host $host;
@@ -14,7 +13,6 @@ server {
     proxy_set_header X-Forwarded-Proto $scheme;
   }
 
-  # SPA routing / statik dosyalar
   location / {
     try_files $uri $uri/ /index.html;
   }

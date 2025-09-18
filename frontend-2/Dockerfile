@@ -10,4 +10,4 @@ COPY . /usr/share/nginx/html
 ENV BACKEND_URL=mithes-api.onrender.com
 
 # Not: EXPOSE şart değil, Render zaten PORT env’i ile yönlendiriyor
-CMD ["/bin/sh", "-c", "envsubst '$$PORT $$BACKEND_URL' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
+CMD ["/bin/sh", "-c", "envsubst '$$BACKEND_URL' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"]
